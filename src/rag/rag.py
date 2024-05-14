@@ -6,7 +6,7 @@ from langchain_pinecone import PineconeVectorStore
 from langchain_community.document_loaders.pdf import PyPDFLoader
 from langchain_community.document_loaders import DirectoryLoader
 from dotenv import load_dotenv
-from constants import *
+from ..constants import *
 from typing import List
 import os
 
@@ -25,7 +25,7 @@ def get_split_documents(raw_documents):
     split_documents = text_splitter.split_documents(raw_documents)
     return split_documents
 
-def embed_document() -> None:
+def embed_documents() -> None:
     """Embeds chunked documents in Pinecone's vector store"""
     raw_documents = load_documents()
     split_documents = get_split_documents(raw_documents)
@@ -36,8 +36,3 @@ def embed_document() -> None:
         embedding=embeddings,
         index_name=PINECONE_INDEX
     )
-
-if __name__ == "__main__":
-    print("Starting embeddings for Luma-1 documents")
-    embed_document()
-    print("Finished embeddings for Luma-1 documents")

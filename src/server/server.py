@@ -11,8 +11,9 @@ import os
 
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+os.environ["PINECONE_API_KEY"] = os.getenv("PINECONE_API_KEY")
 
-app = Flask("luma-1")
+app = Flask(SERVER_NAME)
 
 embeddings = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 document_vectorstore = PineconeVectorStore(

@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  my_python_server:
+  luma-1:
     image: luma-1:latest
     ports:
       - "3200:3200"
