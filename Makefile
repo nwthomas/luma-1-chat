@@ -1,8 +1,5 @@
-embed:
-	python3
-
-install:
-	pip install .
+build:
+    docker-compose -f docker-compose.build.yml build
 
 run:
-	python3
+    docker-compose up
