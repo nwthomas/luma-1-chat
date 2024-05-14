@@ -1,0 +1,15 @@
+.dockerignore
+.env
+.env.example
+.gitignore
+build
+docker-compose.yml
+docker-compose.build.yml
+docs
+luma_1_chat.egg-info
+src/rag
+venv
+Dockerfile
+Makefile
+LICENSE
+README.md
