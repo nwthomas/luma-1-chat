@@ -6,12 +6,12 @@ from langchain_pinecone import PineconeVectorStore
 from langchain_core.messages import HumanMessage, SystemMessage
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify
-from constants import *
+from ..constants import *
 import os
 
 load_dotenv()
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["PINECONE_API_KEY"] = os.getenv("PINECONE_API_KEY")
+# os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+# os.environ["PINECONE_API_KEY"] = os.getenv("PINECONE_API_KEY")
 
 app = Flask(SERVER_NAME)
 
@@ -33,7 +33,7 @@ def get_relevant_documents(prompt):
 
 
 @app.route("/v1/chat")
-def index():
+def run_server():
     data = request.get_json()
     if data is None:
         return jsonify({"error": "No JSON data received"}), 400
@@ -53,6 +53,3 @@ def index():
     result = llm.invoke(prompt_with_context)
 
     return jsonify({"value": result})
-
-if __name__ == "__main__":
-    app.run(port=SERVER_PORT)

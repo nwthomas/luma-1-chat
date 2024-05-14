@@ -5,13 +5,13 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_pinecone import PineconeVectorStore
 from langchain_community.document_loaders.pdf import PyPDFLoader
 from langchain_community.document_loaders import DirectoryLoader
-from dotenv import load_dotenv
 from ..constants import *
+from dotenv import load_dotenv
 from typing import List
 import os
 
 load_dotenv()
-print(os.getenv("OPENAI_API_KEY"))
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
 def load_documents() -> List[str]:
     """Loads PDF documents to be used in embeddings in a vector store"""
