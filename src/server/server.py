@@ -32,7 +32,6 @@ def get_relevant_documents(prompt):
     """Embeds a prompt and performs nearest neighbor search in a vector database via a retriever"""
     return retriever.invoke(prompt)
 
-
 @app.route("/v1/chat")
 def run_server():
     data = request.get_json()

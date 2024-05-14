@@ -41,6 +41,12 @@ make embed
 
 > NOTE: This section requires that you have [Docker](https://www.docker.com/) installed locally. Also, make sure you've completed the [Environment Variables](#environment-variables) section above before continuing on.
 
+First, set an environment variable in your `.env` file for your server host:
+
+```bash
+SERVER_HOST=0.0.0.0
+```
+
 Run the following commands to build a new docker container locally:
 
 ```bash
@@ -58,6 +64,12 @@ You'll now be able to hit http://localhost:3200/v1/chat to ask questions against
 ## Running the Server Without Docker
 
 > Make sure you've completed the [Environment Variables](#environment-variables) section above before continuing on.
+
+First, set an environment variable in your `.env` file for your server host:
+
+```bash
+SERVER_HOST=127.0.0.1
+```
 
 First, create a new virtual environment:
 
