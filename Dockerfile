@@ -2,10 +2,10 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-COPY ./src /app
+COPY . .
 
-RUN pip install -r requirements.txt
+RUN pip install .
 
 EXPOSE 3200
 
-CMD ["python", "main.py"]
+CMD ["python3", "main.py"]

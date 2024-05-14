@@ -4,14 +4,18 @@ This repository contains server code for the [Luma-1](https://github.com/joebrit
 
 ## Table of Contents
 
+- [Environment Variables](#environment-variables)
 - [Doing Embeddings](#doing-embeddings)
 - [Running the Server With Docker](#running-the-server-with-docker)
 - [Running the Server Without Docker](#running-the-server-without-docker)
 - [Sending Requests](#sending-requests)
 
-## Doing Embeddings
+## Environment Variables
 
-Before you can chat against the document, you'll need to embed it in a vector store.
+All functionality of this server requires:
+
+1. An OpenAI API key (model access)
+2. A Pinecone API key (vector store access)
 
 Start by going to [Pinecone](https://app.pinecone.io) to create a new account. Create a new index with the name of `luma-1-index` and a dimension of `1536`. Next, create a new API key in Pinecone and then create an `.env` file at the root of this project with the following environment variable in it:
 
@@ -25,7 +29,9 @@ Next, go to OpenAI's developer dashboard and get an API key. Put this in your `.
 OPENAI_API_KEY="<api key here>"
 ```
 
-Once this is done, you can run the following command to embed the PDF document data:
+## Doing Embeddings
+
+Before you can chat against the document, you'll need to embed it in a vector store. Assuming that you've done the [Environment Variables](#environment-variables) section above, you can run the following command to embed the PDF document data:
 
 ```bash
 make embed
@@ -33,13 +39,25 @@ make embed
 
 ## Running the Server With Docker
 
-Run the following commands to fire up a new docker container locally:
+> NOTE: This section requires that you have [Docker](https://www.docker.com/) installed locally. Also, make sure you've completed the [Environment Variables](#environment-variables) section above before continuing on.
+
+Run the following commands to build a new docker container locally:
 
 ```bash
 make build
 ```
 
+Once that's done, run the docker container with this command:
+
+```bash
+make run-docker
+```
+
+You should now be able to directly make requests against the server:
+
 ## Running the Server Without Docker
+
+> Make sure you've completed the [Environment Variables](#environment-variables) section above before continuing on.
 
 First, create a new virtual environment:
 
