@@ -10,8 +10,8 @@ from ..constants import *
 import os
 
 load_dotenv()
-# os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-# os.environ["PINECONE_API_KEY"] = os.getenv("PINECONE_API_KEY")
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+os.environ["PINECONE_API_KEY"] = os.getenv("PINECONE_API_KEY")
 
 app = Flask(SERVER_NAME)
 
@@ -29,6 +29,7 @@ template = PromptTemplate(
 )
 
 def get_relevant_documents(prompt):
+    """Embeds a prompt and performs nearest neighbor search in a vector database via a retriever"""
     return retriever.get_relevant_documents(prompt)
 
 
@@ -44,12 +45,14 @@ def run_server():
 
     prompt_with_context = template.invoke(
         {
-            "query": user_input,
-            "context": get_relevant_documents(user_input),
+            "query": prompt,
+            "context": get_relevant_documents(prompt),
         },
     )
 
     llm = ChatOpenAI(temperature=0.4)
     result = llm.invoke(prompt_with_context)
+    if result.content is None:
+        return jsonify({"error": "There was an error processing the request"}), 500
 
-    return jsonify({"value": result})
+    return jsonify({"result": result.content})

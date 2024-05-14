@@ -12,6 +12,7 @@ import os
 
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+os.environ["PINECONE_API_KEY"] = os.getenv("PINECONE_API_KEY")
 
 def load_documents() -> List[str]:
     """Loads PDF documents to be used in embeddings in a vector store"""

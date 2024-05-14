@@ -4,11 +4,12 @@ This repository contains server code for the [Luma-1](https://github.com/joebrit
 
 ## Table of Contents
 
-- [Embeddings](#embeddings)
+- [Doing Embeddings](#doing-embeddings)
 - [Running the Server With Docker](#running-the-server-with-docker)
 - [Running the Server Without Docker](#running-the-server-without-docker)
+- [Sending Requests](#sending-requests)
 
-## Embeddings
+## Doing Embeddings
 
 Before you can chat against the document, you'll need to embed it in a vector store.
 
@@ -32,7 +33,11 @@ make embed
 
 ## Running the Server With Docker
 
-Run the following commands to fire up a new docker container loca
+Run the following commands to fire up a new docker container locally:
+
+```bash
+make build
+```
 
 ## Running the Server Without Docker
 
@@ -61,3 +66,23 @@ make run
 ```
 
 You'll be able to hit `http://localhost:3200/v1/chat` to ask questions against the docs.
+
+## Sending Requests
+
+Once you have the server running, you can send requests to `http://localhost:3200/v1/chat` like this:
+
+Request:
+
+```json
+{
+  "prompt": "How can I add new sounds?"
+}
+```
+
+Response:
+
+```json
+{
+  "result": "To add new sounds to the Luma-1, you can use the Load Voice Bank command to load downloaded sounds onto the device via its internal SD card or the Luma-1 Web Application. You can put your sample files into specific folders for different drum sounds, ensuring they are in u-law format and no larger than 32KB. You can also build a custom Voice Bank from EPROM and SysEx sounds and save it to the SD card. To load your new Drum Bank, navigate through the menu and select the folder containing your loaded sounds. The Luma-1 will process the new samples and return to normal drum machine operation."
+}
+```
