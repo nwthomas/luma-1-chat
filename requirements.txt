@@ -27,7 +27,6 @@ langchain-openai==0.1.6
 langchain-pinecone==0.1.0
 langchain-text-splitters==0.0.1
 langsmith==0.1.57
-luma-1-chat @ file:///Users/nathanthomas/workspace/personal/luma-1-chat
 MarkupSafe==2.1.5
 marshmallow==3.21.2
 multidict==6.0.5

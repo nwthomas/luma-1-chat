@@ -53,7 +53,7 @@ Once that's done, run the docker container with this command:
 make run-docker
 ```
 
-You should now be able to directly make requests against the server:
+You'll now be able to hit http://localhost:3200/v1/chat to ask questions against the docs.
 
 ## Running the Server Without Docker
 
@@ -83,7 +83,7 @@ Once you've done this, you can run the server locally with this command:
 make run
 ```
 
-You'll be able to hit `http://localhost:3200/v1/chat` to ask questions against the docs.
+You'll now be able to hit `http://localhost:3200/v1/chat` to ask questions against the docs.
 
 ## Sending Requests
 
