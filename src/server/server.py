@@ -7,6 +7,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify
 from ..constants import *
+from typing import List
 import os
 
 load_dotenv()
@@ -28,12 +29,12 @@ template = PromptTemplate(
     input_variables=["query", "context"],
 )
 
-def get_relevant_documents(prompt):
+def get_relevant_documents(prompt: str) -> List[str]:
     """Embeds a prompt and performs nearest neighbor search in a vector database via a retriever"""
     return retriever.invoke(prompt)
 
 @app.route("/v1/chat")
-def run_server():
+def run_server() -> None:
     data = request.get_json()
     if data is None:
         return jsonify({"error": "No JSON data received"}), 400

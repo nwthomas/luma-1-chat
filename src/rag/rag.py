@@ -20,7 +20,7 @@ def load_documents() -> List[str]:
     raw_documents = loader.load()
     return raw_documents
 
-def get_split_documents(raw_documents):
+def get_split_documents(raw_documents: List[str]) -> List[str]:
     """Chunks PDF documents to be used in embeddings in a vector store"""
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
     split_documents = text_splitter.split_documents(raw_documents)
